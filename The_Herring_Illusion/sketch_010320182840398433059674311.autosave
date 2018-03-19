@@ -1,0 +1,52 @@
+PGraphics pg;
+PGraphics pgAux;
+PImage img;
+  
+void setup(){
+  size (800,600);
+  pg = createGraphics (width, height);
+}
+
+void draw() {
+  pg.beginDraw();
+  int[] beginLine  = new int[2], 
+        endLine = new int[2];
+  int dif = 20;
+  beginLine[0] = 300;
+  beginLine[1] = 100;
+  endLine[0] = 100;
+  endLine[1] = 300;
+
+ 
+  for(int i = 0; i < 3; i++){
+    int j = i * 2;
+    int beginX1 = beginLine[0]+(j*dif),
+        beginX2 = beginLine[0]+((j+1)*dif),
+        endX1 = endLine[0]+(j*dif),
+        endX2 = endLine[0]+((j+1)*dif),
+        beginY1 = beginLine[1]+(j*dif),
+        beginY2 = beginLine[1]+((j+1)*dif),
+        endY1 = endLine[1]+(j*dif),
+        endY2 = endLine[1]+((j+1)*dif);
+ 
+    
+    line(beginX1, beginY1, endX1, endY1);
+     line(beginX2, beginY2, endX2, endY2);
+    float r2 = dist(endX1, endY1, endX2, endY2);
+    System.out.println("I: : " + i);
+    System.out.println("X2: " + (endLine[0]+(j*(dif/2))));
+    System.out.println("Y2: " + ( endLine[1]+(j*(dif/2))));
+  
+   if (i == 0) {
+      ellipse( endLine[0]+(j*(dif/2)), endLine[1]+(j*(dif/2)), (r2),(r2));
+   }
+     
+  
+   
+  }
+  pg.endDraw();
+  
+  image (pg,0,0);
+
+
+}
